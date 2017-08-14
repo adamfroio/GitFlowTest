@@ -26,5 +26,14 @@ namespace HelloWorld
         {
             this.InitializeComponent();
         }
+
+        private async void Button_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            MediaElement mediaElement = new MediaElement();
+            var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+            Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello, Adam!");
+            mediaElement.SetSource(stream, stream.ContentType);
+            mediaElement.Play();
+        }
     }
 }
